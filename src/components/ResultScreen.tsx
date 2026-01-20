@@ -27,6 +27,11 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
     five: ['Situation', 'Obstacle', 'Conseil', 'Passé', 'Futur'],
   };
 
+  // Ordre d'affichage pour la croix: 3, 1, 5, 2, 4
+  const crossOrder = [2, 0, 4, 1, 3]; // Indices pour réorganiser [0,1,2,3,4] en [2,0,4,1,3]
+  const displayCards = spreadType === 'five' ? crossOrder.map(i => cards[i]) : cards;
+  const displayLabels = spreadType === 'five' ? crossOrder.map(i => labels.five[i]) : labels[spreadType];
+
   const toggleExpand = (index: number) => {
     setExpandedCards(prev =>
       prev.includes(index)
@@ -89,9 +94,9 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
           )}
         </motion.div>
 
-        {/* Cards display - horizontal sur desktop */}
-        <div className="results-grid mb-8 flex-1">
-          {cards.map((card, index) => (
+        {/* Cards display */}
+        <div className={`results-grid ${spreadType === 'five' ? 'cross-layout' : ''} mb-8 flex-1`}>
+          {displayCards.map((card, index) => (
             <motion.article
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -100,9 +105,12 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
               className="card"
             >
               <div className="card-content">
-                {/* Card image */}
+
+                {/* Card image - 415px max width */}
                 <div className="flex justify-center mb-6">
-                  <MuchaCard cardId={card.id} cardName={card.name} />
+                  <div className="tarot-card-image">
+                    <MuchaCard cardId={card.id} cardName={card.name} />
+                  </div>
                 </div>
 
                 {/* Card name */}
@@ -202,7 +210,7 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
           </div>
         </motion.div>
 
-        {/* Footer note */}
+        {/* Footer */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

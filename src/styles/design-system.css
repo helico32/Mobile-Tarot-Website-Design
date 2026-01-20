@@ -208,7 +208,7 @@
   padding: 0.75rem 1rem;
   background: rgba(179, 155, 200, 0.3);
   border: 2px solid rgba(179, 155, 200, 0.5);
-  color: var(--color-purple-700);
+  color: var(--color-gold-500); /* Texte doré */
   font-size: 1rem;
 }
 
@@ -401,6 +401,12 @@
   pointer-events: none;
 }
 
+@media (min-width: 768px) {
+  .ornate-frame svg {
+    transform: scaleX(0.85); /* Réduire la largeur pour espacer les côtés */
+  }
+}
+
 .glow-effect {
   box-shadow: 0 0 20px rgba(212, 184, 150, 0.4),
               0 0 40px rgba(212, 184, 150, 0.2);
@@ -568,18 +574,53 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
+  max-width: 415px;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
   .results-grid {
     flex-direction: row;
     align-items: flex-start;
+    max-width: none;
   }
   
   .results-grid > * {
     flex: 1;
     min-width: 0;
+    max-width: 415px;
   }
+  
+  /* Layout croix pour 5 cartes - ordre: 3,1,5,2,4 */
+  .results-grid.cross-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 415px);
+    grid-template-rows: repeat(3, auto);
+    gap: var(--space-lg);
+    justify-content: center;
+  }
+  
+  .results-grid.cross-layout > :nth-child(1) { grid-column: 2; grid-row: 1; } /* 3 - Haut */
+  .results-grid.cross-layout > :nth-child(2) { grid-column: 1; grid-row: 2; } /* 1 - Gauche */
+  .results-grid.cross-layout > :nth-child(3) { grid-column: 2; grid-row: 2; } /* 5 - Centre */
+  .results-grid.cross-layout > :nth-child(4) { grid-column: 3; grid-row: 2; } /* 2 - Droite */
+  .results-grid.cross-layout > :nth-child(5) { grid-column: 2; grid-row: 3; } /* 4 - Bas */
+}
+
+.roman-numeral {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--color-gold-500);
+  font-weight: 500;
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.tarot-card-image {
+  width: 100%;
+  max-width: 415px;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* ============================================
@@ -611,7 +652,7 @@
 
 .selection-circle {
   border-color: var(--color-gold-400) !important;
-  background: rgba(212, 184, 150, 0.3) !important;
+  background: var(--color-gold-500) !important; /* Fond doré uni */
 }
 
 .selection-circle-active {
