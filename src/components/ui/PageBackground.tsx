@@ -7,23 +7,17 @@ interface PageBackgroundProps {
 }
 
 export function PageBackground({ children, variant = 'navy' }: PageBackgroundProps) {
-  const backgrounds = {
-    navy: 'radial-gradient(ellipse at center, #1e293b 0%, #0f1729 100%)',
-    purple: 'radial-gradient(ellipse at top, #2d1b4e 0%, #1e1333 100%)',
-    teal: 'linear-gradient(135deg, #9bc5c3 0%, #7db3b1 100%)',
-  };
+  const showStarfield = variant === 'navy';
+  
+  // Moins d'étoiles sur desktop (30 au lieu de 50)
+  const starCount = typeof window !== 'undefined' && window.innerWidth >= 768 ? 30 : 50;
 
   return (
-    <div 
-      className="min-h-screen relative overflow-hidden"
-      style={{
-        background: backgrounds[variant],
-      }}
-    >
-      {/* Starfield for navy background */}
-      {variant === 'navy' && (
-        <div className="absolute inset-0 opacity-60">
-          {[...Array(50)].map((_, i) => (
+    <div className={`min-h-screen relative overflow-hidden ${variant === 'navy' ? 'bg-navy' : variant === 'purple' ? 'bg-purple' : 'bg-teal-300'}`}>
+      {/* Starfield pour le fond navy */}
+      {showStarfield && (
+        <div className="starfield">
+          {[...Array(starCount)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-gold-400 rounded-full"
@@ -44,22 +38,6 @@ export function PageBackground({ children, variant = 'navy' }: PageBackgroundPro
             />
           ))}
         </div>
-      )}
-
-      {/* Silk texture for purple background */}
-      {variant === 'purple' && (
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 10px,
-              rgba(255, 255, 255, 0.03) 10px,
-              rgba(255, 255, 255, 0.03) 20px
-            )`
-          }}
-        />
       )}
 
       {children}

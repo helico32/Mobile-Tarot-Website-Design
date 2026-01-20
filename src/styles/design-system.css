@@ -1,0 +1,650 @@
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN SYSTEM - Tarot Guidance App
+   Architecture: Tokens → Composants → Utilitaires
+   ============================================ */
+
+/* ============================================
+   1. DESIGN TOKENS
+   ============================================ */
+
+:root {
+  /* Typographie */
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Cormorant Garamond', serif;
+  
+  /* Couleurs Sémantiques */
+  --color-navy-950: #0f1729;
+  --color-navy-900: #1a2332;
+  --color-navy-800: #1e293b;
+  --color-navy-700: #334155;
+  
+  --color-purple-950: #1e1333;
+  --color-purple-900: #2d1b4e;
+  --color-purple-800: #3d2663;
+  --color-purple-700: #4c3575;
+  --color-purple-500: #7c5fb8;
+  
+  --color-gold-400: #e8c896;
+  --color-gold-500: #d4b896;
+  --color-gold-600: #c9a870;
+  
+  --color-teal-300: #9bc5c3;
+  --color-teal-400: #7db3b1;
+  
+  --color-peach-300: #f4d1c8;
+  --color-peach-400: #e8b5a8;
+  --color-peach-500: #d9a399;
+  
+  --color-mauve-400: #b39bc8;
+  --color-mauve-500: #9b7db8;
+  
+  /* Espacements */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  /* Rayons de bordure */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 624.9375rem;
+  
+  /* Ombres */
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 24px rgba(212, 184, 150, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 30px rgba(212, 184, 150, 0.6);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* ============================================
+   2. TYPOGRAPHIE
+   ============================================ */
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.text-display-sm {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.text-heading {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.text-body-sm {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-caption {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* ============================================
+   3. COULEURS UTILITAIRES
+   ============================================ */
+
+.text-gold {
+  color: var(--color-gold-500);
+}
+
+.text-gold-light {
+  color: var(--color-gold-400);
+}
+
+.text-gold-dark {
+  color: var(--color-gold-600);
+}
+
+.text-purple {
+  color: var(--color-purple-500);
+}
+
+.text-mauve {
+  color: var(--color-mauve-500);
+}
+
+.bg-navy {
+  background: radial-gradient(ellipse at center, var(--color-navy-800) 0%, var(--color-navy-950) 100%);
+}
+
+.bg-purple {
+  background: radial-gradient(ellipse at top, var(--color-purple-900) 0%, var(--color-purple-950) 100%);
+}
+
+/* ============================================
+   4. COMPOSANTS - BOUTONS
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  min-height: 44px;
+  border: none;
+  background: none;
+}
+
+.btn-primary {
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, var(--color-peach-400) 0%, var(--color-peach-500) 100%);
+  color: var(--color-navy-900);
+  font-size: 1.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  transform: scale(1.02);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  padding: 1rem 2rem;
+  background: rgba(212, 184, 150, 0.15);
+  border: 2px solid rgba(212, 184, 150, 0.4);
+  color: var(--color-gold-500);
+  font-size: 1.125rem;
+}
+
+.btn-secondary:hover {
+  transform: scale(1.02);
+  background: rgba(212, 184, 150, 0.2);
+}
+
+.btn-tertiary {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  background: rgba(179, 155, 200, 0.3);
+  border: 2px solid rgba(179, 155, 200, 0.5);
+  color: var(--color-purple-700);
+  font-size: 1rem;
+}
+
+.btn-tertiary.active {
+  background: linear-gradient(135deg, var(--color-mauve-400) 0%, var(--color-mauve-500) 100%);
+  color: white;
+  border: none;
+}
+
+.btn-icon {
+  padding: 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(212, 184, 150, 0.15);
+  border: 2px solid rgba(212, 184, 150, 0.3);
+  color: var(--color-gold-500);
+  transition: all var(--transition-base);
+}
+
+.btn-icon:hover {
+  background: rgba(212, 184, 150, 0.25);
+}
+
+/* ============================================
+   5. COMPOSANTS - CARTES
+   ============================================ */
+
+.card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: rgba(212, 184, 150, 0.1);
+  border: 2px solid rgba(212, 184, 150, 0.3);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-content {
+  padding: var(--space-xl);
+}
+
+.card-selected {
+  border-color: rgba(212, 184, 150, 0.6);
+  box-shadow: var(--shadow-glow);
+  background: rgba(212, 184, 150, 0.25);
+}
+
+/* Carte Tarot - dos */
+.tarot-back {
+  width: 85px;
+  height: 130px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--color-purple-800) 0%, var(--color-purple-900) 100%);
+  border: 2px solid rgba(212, 184, 150, 0.4);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.tarot-back::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(212, 184, 150, 0.25);
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   6. COMPOSANTS - LAYOUTS
+   ============================================ */
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.content-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 28rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-wide {
+  max-width: 42rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ============================================
+   7. COMPOSANTS - NAVIGATION
+   ============================================ */
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) 0;
+  margin-left: calc(-1 * var(--space-sm));
+  color: var(--color-gold-500);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.back-button:hover {
+  color: var(--color-gold-400);
+}
+
+/* ============================================
+   8. COMPOSANTS - INDICATEURS
+   ============================================ */
+
+.progress-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all var(--transition-base);
+}
+
+.progress-dot {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(179, 155, 200, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xs);
+  transition: all var(--transition-base);
+}
+
+.progress-dot.completed {
+  border-color: var(--color-gold-400);
+  background: rgba(212, 184, 150, 0.3);
+}
+
+.progress-dot.active {
+  border-color: var(--color-gold-400);
+  background: rgba(212, 184, 150, 0.2);
+  box-shadow: 0 0 0 4px rgba(212, 184, 150, 0.1);
+  transform: scale(1.25);
+}
+
+.progress-label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-align: center;
+  padding: 0 var(--space-xs);
+  color: var(--color-mauve-500);
+  transition: all var(--transition-base);
+}
+
+.progress-indicator.active .progress-label {
+  color: var(--color-gold-500);
+  font-weight: 600;
+}
+
+/* ============================================
+   9. EFFETS VISUELS
+   ============================================ */
+
+.starfield {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.ornate-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(212, 184, 150, 0.4),
+              0 0 40px rgba(212, 184, 150, 0.2);
+}
+
+/* ============================================
+   10. ÉTATS INTERACTIFS
+   ============================================ */
+
+.interactive {
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+}
+
+.interactive:active {
+  transform: scale(0.98);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================
+   11. ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ============================================
+   12. UTILITAIRES SUPPLÉMENTAIRES
+   ============================================ */
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.stack-sm {
+  gap: var(--space-sm);
+}
+
+.stack-lg {
+  gap: var(--space-lg);
+}
+
+.cluster {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================
+   13. ACCESSIBILITÉ
+   ============================================ */
+
+*:focus-visible {
+  outline: 3px solid var(--color-gold-400);
+  outline-offset: 2px;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-navy-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-600);
+  border-radius: var(--radius-sm);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-500);
+}
+
+/* ============================================
+   14. RÉSULTATS - SPREAD HORIZONTAL
+   ============================================ */
+
+.results-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .results-grid {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .results-grid > * {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* ============================================
+   15. SÉLECTION DE CARTES - COULEURS
+   ============================================ */
+
+.selection-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  background: var(--color-gold-500);
+  color: var(--color-purple-700);
+  font-family: var(--font-display);
+}
+
+.selection-number {
+  color: var(--color-purple-700);
+  font-weight: bold;
+  font-family: var(--font-display);
+}
+
+.selection-circle {
+  border-color: var(--color-gold-400) !important;
+  background: rgba(212, 184, 150, 0.3) !important;
+}
+
+.selection-circle-active {
+  border-color: var(--color-gold-400) !important;
+  background: rgba(212, 184, 150, 0.2) !important;
+  box-shadow: 0 0 0 4px rgba(212, 184, 150, 0.1);
+}
+
+/* ============================================
+   16. RESPONSIVE
+   ============================================ */
+
+@media (max-width: 640px) {
+  .text-display-lg {
+    font-size: 2rem;
+  }
+  
+  .text-display-md {
+    font-size: 1.75rem;
+  }
+  
+  .btn-primary {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
