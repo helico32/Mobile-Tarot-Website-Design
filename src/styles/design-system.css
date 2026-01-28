@@ -607,15 +607,6 @@
   .results-grid.cross-layout > :nth-child(5) { grid-column: 2; grid-row: 3; } /* 4 - Bas */
 }
 
-.roman-numeral {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  color: var(--color-gold-500);
-  font-weight: 500;
-  margin-bottom: var(--space-md);
-  text-align: center;
-}
-
 .tarot-card-image {
   width: 100%;
   max-width: 415px;
