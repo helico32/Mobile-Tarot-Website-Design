@@ -18,6 +18,7 @@ export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('landing');
   const [selectedCards, setSelectedCards] = useState<TarotCard[]>([]);
   const [spreadType, setSpreadType] = useState<'single' | 'three' | 'five'>('single');
+  const [isFromSaved, setIsFromSaved] = useState(false);
 
   const handleStartReading = (type: 'single' | 'three' | 'five') => {
     setSpreadType(type);
@@ -26,6 +27,7 @@ export default function App() {
 
   const handleCardsSelected = (cards: TarotCard[]) => {
     setSelectedCards(cards);
+    setIsFromSaved(false);
     setCurrentScreen('result');
   };
 
@@ -45,6 +47,7 @@ export default function App() {
   const handleViewReading = (cards: TarotCard[], type: 'single' | 'three' | 'five') => {
     setSelectedCards(cards);
     setSpreadType(type);
+    setIsFromSaved(true);
     setCurrentScreen('result');
   };
 
@@ -71,6 +74,7 @@ export default function App() {
           onNewReading={handleNewReading}
           onBackToLanding={handleBackToLanding}
           onViewSaved={handleViewSaved}
+          isFromSaved={isFromSaved}
         />
       )}
       {currentScreen === 'saved' && (

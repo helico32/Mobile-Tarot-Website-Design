@@ -14,10 +14,11 @@ interface ResultScreenProps {
   onNewReading: () => void;
   onBackToLanding: () => void;
   onViewSaved: () => void;
+  isFromSaved?: boolean;
 }
 
-export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding, onViewSaved }: ResultScreenProps) {
-  const [saved, setSaved] = useState(false);
+export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding, onViewSaved, isFromSaved = false }: ResultScreenProps) {
+  const [saved, setSaved] = useState(isFromSaved);
 
   const labels = {
     single: [''],
@@ -33,7 +34,6 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
   const handleSave = () => {
     saveReading(cards, spreadType);
     setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
   };
 
   const handleShare = () => {
@@ -120,7 +120,9 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
                     {card.interpretation}
                   </p>
 
-                  <p className="text-body text-gold-dark leading-relaxed">
+                  <p className="text-body-lg text-gold-light mb-6 leading-relaxed">
+                    <span className="font-semibold text-gold">Approfondir :</span>
+                    <br />
                     {card.deeperMeaning}
                   </p>
                 </div>
