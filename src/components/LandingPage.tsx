@@ -56,7 +56,7 @@ export function LandingPage({ onStartReading, onViewSaved }: LandingPageProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="text-display-lg text-gold text-center mb-6"
+              className="text-display-lg text-gold text-center mb-3"
             >
               Guidance
               <br />
@@ -67,7 +67,7 @@ export function LandingPage({ onStartReading, onViewSaved }: LandingPageProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 1 }}
-              className="text-body-lg text-gold-dark text-center mb-3"
+              className="text-body-lg text-gold-dark text-center mb-6"
               style={{ opacity: 0.9 }}
             >
               Interprétations d'Emmanuelle Iger
@@ -85,7 +85,7 @@ export function LandingPage({ onStartReading, onViewSaved }: LandingPageProps) {
                   ariaLabel="Commencer un tirage à une carte"
                 >
                   Tirage à une carte
-                  <span className="block text-xs mt-1 opacity-70">Tirage quotidien</span>
+                  <span className="block text-sm mt-1 opacity-70">Tirage quotidien</span>
                 </PrimaryButton>
               </motion.div>
 
@@ -99,7 +99,7 @@ export function LandingPage({ onStartReading, onViewSaved }: LandingPageProps) {
                   ariaLabel="Tirage à trois cartes : passé, présent, futur"
                 >
                   Tirage à trois cartes
-                  <span className="block text-xs mt-1 opacity-70">Passé · Présent · Futur</span>
+                  <span className="block text-sm mt-1 opacity-70">Passé · Présent · Futur</span>
                 </SecondaryButton>
               </motion.div>
 
@@ -113,7 +113,7 @@ export function LandingPage({ onStartReading, onViewSaved }: LandingPageProps) {
                   ariaLabel="Tirage à cinq cartes : tirage en croix"
                 >
                   Tirage à cinq cartes
-                  <span className="block text-xs mt-1 opacity-70">Tirage en croix</span>
+                  <span className="block text-sm mt-1 opacity-70">Tirage en croix</span>
                 </SecondaryButton>
               </motion.div>
             </div>

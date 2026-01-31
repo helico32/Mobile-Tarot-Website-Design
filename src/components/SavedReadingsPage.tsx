@@ -82,7 +82,7 @@ export function SavedReadingsPage({ onBack, onViewReading, onViewSaved }: SavedR
         </motion.p>
 
         {/* Readings list */}
-        <div className="content-wide stack-lg flex-1">
+        <div className="content-wide stack flex-1">
           {readings.length === 0 ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -123,15 +123,15 @@ export function SavedReadingsPage({ onBack, onViewReading, onViewSaved }: SavedR
                         key={i}
                         className="shrink-0 rounded-lg p-2 text-center"
                         style={{
-                          width: '80px',
+                          width: '90px',
                           background: 'rgba(61, 38, 99, 0.3)',
                           border: '1px solid rgba(212, 184, 150, 0.3)',
                         }}
                       >
-                        <div className="text-xs mb-1 text-gold" style={{ fontFamily: 'Cinzel, serif' }}>
+                        <div className="text-sm mb-1 text-gold" style={{ fontFamily: 'Cinzel, serif' }}>
                           {card.id}
                         </div>
-                        <div className="text-xs leading-tight text-gold-dark">
+                        <div className="text-sm leading-tight text-gold-dark">
                           {card.name}
                         </div>
                       </div>

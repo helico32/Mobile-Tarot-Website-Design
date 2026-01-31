@@ -37,18 +37,16 @@ export function MuchaCard({ cardId, cardName }: MuchaCardProps) {
 
   return (
     <div
-      className="relative rounded-2xl overflow-hidden"
+      className="relative rounded-2xl overflow-hidden w-full"
       style={{
-        width: '200px',
-        height: '340px',
+        maxWidth: '200px',
+        aspectRatio: '200 / 340',
         border: '4px solid #d4b896',
         boxShadow: '0 8px 24px rgba(212, 184, 150, 0.4), inset 0 0 20px rgba(212, 184, 150, 0.2)',
         background: '#f4ede4',
       }}
     >
       <svg
-        width="200"
-        height="340"
         viewBox="0 0 200 340"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

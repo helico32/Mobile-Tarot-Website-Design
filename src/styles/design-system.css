@@ -119,7 +119,7 @@
 
 .text-caption {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   opacity: 0.7;
 }
 
@@ -375,7 +375,7 @@ button:hover:not(:disabled) > .tarot-back {
 
 .progress-label {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   text-align: center;
   padding: 0 var(--space-xs);
   color: var(--color-mauve-500);
@@ -515,7 +515,7 @@ button:hover:not(:disabled) > .tarot-back {
 .stack {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-xl);
 }
 
 .stack-sm {
@@ -583,20 +583,56 @@ button:hover:not(:disabled) > .tarot-back {
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
+/* Tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 680px;
+    gap: var(--space-lg);
+  }
+
+  .results-grid > * {
+    max-width: none;
+  }
+
+  /* Carte unique centrée */
+  .results-grid > :only-child {
+    grid-column: 1 / -1;
+    max-width: 415px;
+    justify-self: center;
+  }
+
+  /* 3 cartes : 2 en haut, 1 centrée en bas */
+  .results-grid > :last-child:nth-child(3) {
+    grid-column: 1 / -1;
+    max-width: 415px;
+    justify-self: center;
+  }
+
+  /* Croix : colonne unique sur tablette */
+  .results-grid.cross-layout {
+    grid-template-columns: 1fr;
+    max-width: 415px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
   .results-grid {
     flex-direction: row;
     align-items: flex-start;
     max-width: none;
   }
-  
+
   .results-grid > * {
     flex: 1;
     min-width: 0;
     max-width: 415px;
   }
-  
-  /* Layout croix pour 5 cartes - ordre: 3,1,5,2,4 */
+
+  /* Layout croix pour 5 cartes */
   .results-grid.cross-layout {
     display: grid;
     grid-template-columns: repeat(3, 415px);
@@ -604,12 +640,12 @@ button:hover:not(:disabled) > .tarot-back {
     gap: var(--space-lg);
     justify-content: center;
   }
-  
-  .results-grid.cross-layout > :nth-child(1) { grid-column: 2; grid-row: 1; } /* 3 - Haut */
-  .results-grid.cross-layout > :nth-child(2) { grid-column: 1; grid-row: 2; } /* 1 - Gauche */
-  .results-grid.cross-layout > :nth-child(3) { grid-column: 2; grid-row: 2; } /* 5 - Centre */
-  .results-grid.cross-layout > :nth-child(4) { grid-column: 3; grid-row: 2; } /* 2 - Droite */
-  .results-grid.cross-layout > :nth-child(5) { grid-column: 2; grid-row: 3; } /* 4 - Bas */
+
+  .results-grid.cross-layout > :nth-child(1) { grid-column: 2; grid-row: 1; }
+  .results-grid.cross-layout > :nth-child(2) { grid-column: 1; grid-row: 2; }
+  .results-grid.cross-layout > :nth-child(3) { grid-column: 2; grid-row: 2; }
+  .results-grid.cross-layout > :nth-child(4) { grid-column: 3; grid-row: 2; }
+  .results-grid.cross-layout > :nth-child(5) { grid-column: 2; grid-row: 3; }
 }
 
 .tarot-card-image {
@@ -636,7 +672,7 @@ button:hover:not(:disabled) > .tarot-back {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: bold;
   background: var(--color-gold-500);
   color: var(--color-purple-700);
@@ -668,14 +704,34 @@ button:hover:not(:disabled) > .tarot-back {
   .text-display-lg {
     font-size: 2rem;
   }
-  
+
   .text-display-md {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
-  
-  .btn-primary {
-    padding: 1rem 1.5rem;
-    font-size: 1.125rem;
+
+  .text-display-sm {
+    font-size: 1.25rem;
+  }
+
+  .card-content {
+    padding: var(--space-md);
+  }
+
+  .page-container {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .btn-secondary {
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .tarot-card-image {
+    max-width: 280px;
+  }
+
+  .results-grid {
+    gap: var(--space-lg);
   }
 }
 
