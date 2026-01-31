@@ -4,10 +4,11 @@ import { motion } from 'motion/react';
 interface PageBackgroundProps {
   children: ReactNode;
   variant?: 'navy' | 'purple' | 'teal';
+  showStars?: boolean;
 }
 
-export function PageBackground({ children, variant = 'navy' }: PageBackgroundProps) {
-  const showStarfield = variant === 'navy';
+export function PageBackground({ children, variant = 'navy', showStars = true }: PageBackgroundProps) {
+  const showStarfield = showStars && variant === 'navy';
   
   // Moins d'étoiles sur desktop (30 au lieu de 50)
   const starCount = typeof window !== 'undefined' && window.innerWidth >= 768 ? 30 : 50;

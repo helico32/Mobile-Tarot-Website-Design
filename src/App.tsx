@@ -61,6 +61,7 @@ export default function App() {
           spreadType={spreadType}
           onCardsSelected={handleCardsSelected}
           onBack={handleBackToLanding}
+          onViewSaved={handleViewSaved}
         />
       )}
       {currentScreen === 'result' && (
@@ -69,12 +70,14 @@ export default function App() {
           spreadType={spreadType}
           onNewReading={handleNewReading}
           onBackToLanding={handleBackToLanding}
+          onViewSaved={handleViewSaved}
         />
       )}
       {currentScreen === 'saved' && (
         <SavedReadingsPage
           onBack={handleBackToLanding}
           onViewReading={handleViewReading}
+          onViewSaved={handleViewSaved}
         />
       )}
     </div>

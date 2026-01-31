@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { RotateCcw, Share2, Heart, ChevronDown, ChevronUp } from 'lucide-react';
 import { TarotCard } from '../App';
 import { PageBackground } from './ui/PageBackground';
-import { OrnateFrame } from './OrnateFrame';
+
 import { TertiaryButton } from './ui/TertiaryButton';
 import { SavedReadingsButton } from './ui/SavedReadingsButton';
 import { saveReading } from '../utils/localStorage';
@@ -56,8 +56,7 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
   };
 
   return (
-    <PageBackground variant="navy">
-      <OrnateFrame />
+    <PageBackground variant="navy" showStars={false}>
 
       <div className="page-container pb-24">
         <SavedReadingsButton onClick={onViewSaved} />

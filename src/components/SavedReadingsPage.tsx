@@ -44,7 +44,7 @@ export function SavedReadingsPage({ onBack, onViewReading, onViewSaved }: SavedR
   };
 
   return (
-    <PageBackground variant="navy">
+    <PageBackground variant="navy" showStars={false}>
       <div className="page-container">
         <SavedReadingsButton onClick={onViewSaved} />
 

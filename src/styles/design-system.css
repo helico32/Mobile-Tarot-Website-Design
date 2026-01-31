@@ -259,9 +259,14 @@
   height: 130px;
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, var(--color-purple-800) 0%, var(--color-purple-900) 100%);
-  border: 2px solid rgba(212, 184, 150, 0.4);
+  border: 3px solid rgba(212, 184, 150, 0.4);
   box-shadow: var(--shadow-sm);
   position: relative;
+  transition: border-color 0.2s ease;
+}
+
+button:hover:not(:disabled) > .tarot-back {
+  border-color: var(--color-gold-400);
 }
 
 .tarot-back::before {

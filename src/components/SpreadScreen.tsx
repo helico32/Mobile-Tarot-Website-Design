@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { TarotCard } from '../App';
 import { tarotDeck } from '../data/tarotDeck';
 import { PageBackground } from './ui/PageBackground';
-import { OrnateFrame } from './OrnateFrame';
+
 import { SavedReadingsButton } from './ui/SavedReadingsButton';
 
 interface SpreadScreenProps {
@@ -49,8 +49,7 @@ export function SpreadScreen({ spreadType, onCardsSelected, onBack, onViewSaved 
   };
 
   return (
-    <PageBackground variant="navy">
-      <OrnateFrame />
+    <PageBackground variant="navy" showStars={false}>
 
       <div className="page-container">
         <SavedReadingsButton onClick={onViewSaved} />
@@ -169,9 +168,7 @@ export function SpreadScreen({ spreadType, onCardsSelected, onBack, onViewSaved 
                       damping: 15,
                       delay: index * 0.05,
                     }}
-                    whileHover={!isSelected && !isRevealing ? { 
-                      scale: 1.15, 
-                      y: -y + 80,
+                    whileHover={!isSelected && !isRevealing ? {
                       zIndex: 50,
                     } : {}}
                     onClick={() => handleCardClick(index)}
