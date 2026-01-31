@@ -5,8 +5,10 @@ import { TarotCard } from '../App';
 import { PageBackground } from './ui/PageBackground';
 
 import { SavedReadingsButton } from './ui/SavedReadingsButton';
-import { saveReading } from '../utils/localStorage';
+import { saveReading, deleteReading } from '../utils/localStorage';
 import { MuchaCard } from './MuchaCard';
+
+const romanNumerals = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
 
 interface ResultScreenProps {
   cards: TarotCard[];
@@ -15,10 +17,12 @@ interface ResultScreenProps {
   onBackToLanding: () => void;
   onViewSaved: () => void;
   isFromSaved?: boolean;
+  savedReadingId?: string;
 }
 
-export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding, onViewSaved, isFromSaved = false }: ResultScreenProps) {
+export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding, onViewSaved, isFromSaved = false, savedReadingId }: ResultScreenProps) {
   const [saved, setSaved] = useState(isFromSaved);
+  const [currentSavedId, setCurrentSavedId] = useState<string | undefined>(savedReadingId);
 
   const labels = {
     single: [''],
@@ -32,8 +36,15 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
   const displayLabels = spreadType === 'five' ? crossOrder.map(i => labels.five[i]) : labels[spreadType];
 
   const handleSave = () => {
-    saveReading(cards, spreadType);
-    setSaved(true);
+    if (saved && currentSavedId) {
+      deleteReading(currentSavedId);
+      setCurrentSavedId(undefined);
+      setSaved(false);
+    } else {
+      const id = saveReading(cards, spreadType);
+      setCurrentSavedId(id);
+      setSaved(true);
+    }
   };
 
   const handleShare = () => {
@@ -95,7 +106,12 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
             >
               <div className="card-content">
 
-                {/* Card image - 415px max width */}
+                {/* Roman numeral */}
+                <p className="text-display-sm text-gold text-center mb-4">
+                  {romanNumerals[card.id]}
+                </p>
+
+                {/* Card image */}
                 <div className="flex justify-center mb-6">
                   <div className="tarot-card-image">
                     <MuchaCard cardId={card.id} cardName={card.name} />
@@ -104,7 +120,7 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
 
                 {/* Card name */}
                 <div className="text-center">
-                  <h2 className="text-display-sm text-gold mb-1">
+                  <h2 className="text-display-sm text-gold mb-4">
                     {card.name}
                   </h2>
 
@@ -181,10 +197,12 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: cards.length * 0.3 + 0.5 }}
-          className="text-center mt-8 text-sm text-mauve"
+          className="text-body-sm text-purple text-center mt-12"
           style={{ opacity: 0.7 }}
         >
-          Les cartes sont un miroir de votre intuition
+          Aucune donnée n'est collectée.
+          <br />
+          Votre lecture reste privée.
         </motion.p>
       </div>
     </PageBackground>

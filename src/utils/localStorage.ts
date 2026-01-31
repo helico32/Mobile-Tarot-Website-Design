@@ -9,23 +9,25 @@ export interface SavedReading {
 
 const STORAGE_KEY = 'tarot_saved_readings';
 
-export function saveReading(cards: TarotCard[], spreadType: 'single' | 'three' | 'five'): void {
+export function saveReading(cards: TarotCard[], spreadType: 'single' | 'three' | 'five'): string {
   const readings = getSavedReadings();
+  const id = Date.now().toString();
   const newReading: SavedReading = {
-    id: Date.now().toString(),
+    id,
     date: new Date().toISOString(),
     cards,
     spreadType,
   };
-  
+
   readings.unshift(newReading);
-  
+
   // Keep only last 20 readings
   if (readings.length > 20) {
     readings.splice(20);
   }
-  
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(readings));
+  return id;
 }
 
 export function getSavedReadings(): SavedReading[] {

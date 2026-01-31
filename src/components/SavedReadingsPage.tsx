@@ -8,7 +8,7 @@ import { TarotCard } from '../App';
 
 interface SavedReadingsPageProps {
   onBack: () => void;
-  onViewReading: (cards: TarotCard[], spreadType: 'single' | 'three' | 'five') => void;
+  onViewReading: (cards: TarotCard[], spreadType: 'single' | 'three' | 'five', readingId?: string) => void;
   onViewSaved: () => void;
 }
 
@@ -141,7 +141,7 @@ export function SavedReadingsPage({ onBack, onViewReading, onViewSaved }: SavedR
                   {/* Actions */}
                   <div className="flex gap-2">
                     <button
-                      onClick={() => onViewReading(reading.cards, reading.spreadType)}
+                      onClick={() => onViewReading(reading.cards, reading.spreadType, reading.id)}
                       className="btn btn-primary flex-1"
                       aria-label={`Voir le tirage du ${formatDate(reading.date)}`}
                     >
@@ -163,6 +163,15 @@ export function SavedReadingsPage({ onBack, onViewReading, onViewSaved }: SavedR
             ))
           )}
         </div>
+
+        <p
+          className="text-body-sm text-purple text-center mt-12"
+          style={{ opacity: 0.7 }}
+        >
+          Aucune donnée n'est collectée.
+          <br />
+          Votre lecture reste privée.
+        </p>
       </div>
     </PageBackground>
   );

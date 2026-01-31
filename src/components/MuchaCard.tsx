@@ -135,37 +135,6 @@ export function MuchaCard({ cardId, cardName }: MuchaCardProps) {
           {getFloralDecoration(cardId, colors)}
         </g>
 
-        {/* Card number at top */}
-        <text
-          x="100"
-          y="58"
-          textAnchor="middle"
-          fill={colors.accent}
-          fontSize="18"
-          fontFamily="Cinzel, serif"
-          fontWeight="600"
-          opacity="0.9"
-        >
-          {cardId}
-        </text>
-
-        {/* Card name at bottom */}
-        <text
-          x="100"
-          y="325"
-          textAnchor="middle"
-          fill={colors.accent}
-          fontSize="14"
-          fontFamily="Cinzel, serif"
-          fontWeight="500"
-          opacity="0.9"
-        >
-          {cardName.split(' ').map((word, i) => (
-            <tspan key={i} x="100" dy={i === 0 ? 0 : 16}>
-              {word.toUpperCase()}
-            </tspan>
-          ))}
-        </text>
       </svg>
     </div>
   );

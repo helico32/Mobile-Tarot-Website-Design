@@ -211,10 +211,12 @@ export function SpreadScreen({ spreadType, onCardsSelected, onBack, onViewSaved 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-center text-sm text-mauve"
+          className="text-body-sm text-purple text-center mt-12"
           style={{ opacity: 0.7 }}
         >
-          Faites confiance à votre intuition
+          Aucune donnée n'est collectée.
+          <br />
+          Votre lecture reste privée.
         </motion.p>
       </div>
     </PageBackground>
