@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { RotateCcw, Share2, Heart, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion } from 'motion/react';
+import { RotateCcw, Share2, Heart } from 'lucide-react';
 import { TarotCard } from '../App';
 import { PageBackground } from './ui/PageBackground';
 
-import { TertiaryButton } from './ui/TertiaryButton';
 import { SavedReadingsButton } from './ui/SavedReadingsButton';
 import { saveReading } from '../utils/localStorage';
 import { MuchaCard } from './MuchaCard';
@@ -18,7 +17,6 @@ interface ResultScreenProps {
 }
 
 export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding, onViewSaved }: ResultScreenProps) {
-  const [expandedCards, setExpandedCards] = useState<number[]>([]);
   const [saved, setSaved] = useState(false);
 
   const labels = {
@@ -31,14 +29,6 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
   const crossOrder = [2, 0, 4, 1, 3]; // Indices pour réorganiser [0,1,2,3,4] en [2,0,4,1,3]
   const displayCards = spreadType === 'five' ? crossOrder.map(i => cards[i]) : cards;
   const displayLabels = spreadType === 'five' ? crossOrder.map(i => labels.five[i]) : labels[spreadType];
-
-  const toggleExpand = (index: number) => {
-    setExpandedCards(prev =>
-      prev.includes(index)
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  };
 
   const handleSave = () => {
     saveReading(cards, spreadType);
@@ -130,39 +120,9 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
                     {card.interpretation}
                   </p>
 
-                  {/* Expand button */}
-                  <button
-                    onClick={() => toggleExpand(index)}
-                    className="btn btn-secondary w-full"
-                    aria-expanded={expandedCards.includes(index)}
-                    aria-label={`${expandedCards.includes(index) ? 'Réduire' : 'Approfondir'} l'interprétation de ${card.name}`}
-                  >
-                    <span>Approfondir</span>
-                    {expandedCards.includes(index) ? (
-                      <ChevronUp className="w-5 h-5" aria-hidden="true" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5" aria-hidden="true" />
-                    )}
-                  </button>
-
-                  {/* Expanded content */}
-                  <AnimatePresence>
-                    {expandedCards.includes(index) && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pt-4">
-                          <p className="text-body text-gold-dark leading-relaxed">
-                            {card.deeperMeaning}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  <p className="text-body text-gold-dark leading-relaxed">
+                    {card.deeperMeaning}
+                  </p>
                 </div>
               </div>
             </motion.article>
@@ -174,7 +134,7 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: cards.length * 0.3 + 0.3 }}
-          className="stack max-w-md mx-auto w-full"
+          className="stack max-w-md mx-auto w-full mt-8"
         >
           {/* Primary button */}
           <motion.button
@@ -190,22 +150,27 @@ export function ResultScreen({ cards, spreadType, onNewReading, onBackToLanding,
 
           {/* Secondary buttons */}
           <div className="flex gap-3">
-            <TertiaryButton
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={handleSave}
-              icon={<Heart className={saved ? 'fill-current' : ''} />}
-              active={saved}
-              ariaLabel={saved ? 'Tirage sauvegardé' : 'Enregistrer le tirage'}
+              className="btn btn-secondary flex-1"
+              aria-label={saved ? 'Tirage sauvegardé' : 'Enregistrer le tirage'}
             >
-              {saved ? 'Sauvegardé' : 'Enregistrer'}
-            </TertiaryButton>
+              <Heart className={`w-5 h-5 ${saved ? 'fill-current' : ''}`} aria-hidden="true" />
+              <span>{saved ? 'Sauvegardé' : 'Enregistrer'}</span>
+            </motion.button>
 
-            <TertiaryButton
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={handleShare}
-              icon={<Share2 className="w-5 h-5" />}
-              ariaLabel="Partager le tirage"
+              className="btn btn-secondary flex-1"
+              aria-label="Partager le tirage"
             >
-              Partager
-            </TertiaryButton>
+              <Share2 className="w-5 h-5" aria-hidden="true" />
+              <span>Partager</span>
+            </motion.button>
           </div>
         </motion.div>
 

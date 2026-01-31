@@ -617,6 +617,9 @@ button:hover:not(:disabled) > .tarot-back {
   max-width: 415px;
   height: auto;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ============================================
